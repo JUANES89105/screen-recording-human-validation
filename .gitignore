@@ -1,0 +1,26 @@
+.DS_Store
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.venv/
+venv/
+.env
+
+# Data and generated outputs
+data/raw/*
+!data/raw/.gitkeep
+data/intermediate/*
+!data/intermediate/.gitkeep
+outputs/*
+!outputs/.gitkeep
+
+# Local review files
+*_manual.xlsx
+*_reviewed.xlsx
+
+# Streamlit private credentials
+.streamlit/secrets.toml
+.secrets/
+
+# Human validation private data
+validation/validation_key_PRIVATE.csv
