@@ -90,7 +90,7 @@ def get_google_credentials():
 
 
 @st.cache_resource
-def get_worksheet():
+def get_worksheet(evaluator_id):
 
     creds = get_google_credentials()
 
@@ -106,7 +106,9 @@ def get_worksheet():
         spreadsheet_id
     )
 
-    return spreadsheet.sheet1
+    return spreadsheet.worksheet(
+        str(evaluator_id)
+    )
 
 
 # ============================================================
@@ -128,9 +130,9 @@ def load_sample():
 # GOOGLE SHEETS
 # ============================================================
 
-def load_all_responses():
+def load_all_responses(evaluator_id):
 
-    ws = get_worksheet()
+    ws = get_worksheet(evaluator_id)
 
     records = ws.get_all_records()
 
@@ -154,7 +156,7 @@ def load_evaluator_responses(
     evaluator_id
 ):
 
-    df = load_all_responses()
+    df = load_all_responses(evaluator_id)
 
     if df.empty:
         return df
@@ -172,7 +174,7 @@ def save_response(
     category
 ):
 
-    ws = get_worksheet()
+    ws = get_worksheet(evaluator_id)
 
     values = ws.get_all_values()
 
